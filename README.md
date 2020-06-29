@@ -1,6 +1,6 @@
 # http_server
 
-![Rust](https://github.com/its-ash/http_server/workflows/Rust/badge.svg)
+![Rust](https://github.com/its-ash/http_server/workflows/Rust/badge.svg) [![Build Status](https://travis-ci.org/its-ash/http_server.svg?branch=master)](https://travis-ci.org/its-ash/http_server)
 
 Simple Http Server written in Rust 
 
