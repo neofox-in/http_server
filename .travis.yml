@@ -30,6 +30,4 @@ before-cache:
   - rm -rf $HOME/.cargo/registry
 sudo: false
 script:
-    - cargo build
-    - cargo test
-    - cargo bench
+    - cargo build --release
