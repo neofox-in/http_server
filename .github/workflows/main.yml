@@ -3,8 +3,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build:
@@ -27,8 +26,10 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            target/release/PROJECT_NAME_amd64
+          file: target/release/linux-${{ artifact_name }}
+          asset_name: ${{ asset_name }}
+          tag: ${{ github.ref }}
+          overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -53,7 +54,10 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: target/release/PROJECT_NAME.exe
+          file: target/release/windows-${{ artifact_name }}
+          asset_name: ${{ asset_name }}
+          tag: ${{ github.ref }}
+          overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -78,7 +82,10 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            target/release/PROJECT_NAME_darwin
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/release/mac-${{ artifact_name }}
+          asset_name: ${{ asset_name }}
+          tag: ${{ github.ref }}
+          overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
