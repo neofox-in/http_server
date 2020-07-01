@@ -20,6 +20,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
+          run: cargo build --release
           body: |
             Changes in this Release
             - First Change
