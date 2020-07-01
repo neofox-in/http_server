@@ -1,3 +1,6 @@
+mod server;
+mod files;
+
 fn main() {
-    print!("init");
+    let _ = files::traversal::visit();
 }
