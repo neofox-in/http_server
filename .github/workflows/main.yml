@@ -38,8 +38,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
-          prerelease: false
-          auto
+          auto-prerelease: false
           title: "os-build"
           files: |
             target/release/http_server_amd64
