@@ -8,9 +8,9 @@ Simple Http Server written in Rust
 
 ### Download binary
 
-- windows
-- Mac
-- Linux
+- [windows](https://github.com/its-ash/http_server/releases/tag/windows)
+- [Mac](https://github.com/its-ash/http_server/releases/tag/os-x)
+- [Linux](https://github.com/its-ash/http_server/releases/tag/linux)
 
 ## Features
 
