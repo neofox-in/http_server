@@ -36,8 +36,8 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          auto-prerelease: false
+          automatic_release_tag: "linux"
+          prerelease: false
           title: "linux-build"
           files: |
             target/release/http_server_amd64
@@ -71,7 +71,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: "windows"
           prerelease: false
           title: "windows-build"
           files: |
@@ -108,7 +108,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: "os-x"
           prerelease: false
           title: "mac-build"
           files: |
