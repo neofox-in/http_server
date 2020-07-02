@@ -2,8 +2,7 @@ name: Rust
 
 on:
   push:
-    tags:
-      - "v*"
+    branches: [ master ]
 
 
 jobs:
@@ -39,7 +38,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           auto-prerelease: false
-          title: "os-build"
+          title: "linux-build"
           files: |
             target/release/http_server_amd64
 
@@ -74,7 +73,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "os-build"
+          title: "windows-build"
           files: |
             target/release/http_server.exe
 
@@ -111,6 +110,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "os-build"
+          title: "mac-build"
           files: |
             target/release/http_server_darwin
