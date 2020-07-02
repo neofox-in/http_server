@@ -1,34 +1,38 @@
-use std::{env, fs};
+use std::env::current_dir;
+use std::fs::{read_dir, ReadDir, DirEntry};
 
 
-pub fn visit() -> Result<(), String> {
-    let current_dir = env::current_dir().expect("[can't get current location]");
-    for entry in fs::read_dir(current_dir).expect("[ can't read file]") {
-        let entry = entry.expect("[ can't read file]");
-        let path = entry.path();
-        let metadata = fs::metadata(&path).expect("[ can't get file metadata ]");
-        let mut last_modified = metadata.modified().unwrap().elapsed().unwrap().as_secs();
-        let permission: &str;
-        if metadata.permissions().readonly() {
-            permission = "read";
-        } else {
-            permission = "write";
-        }
-        let day = last_modified / (3600*24);
-        last_modified = last_modified % (3600*24);
-        let hour = last_modified / 3600;
-        last_modified = last_modified % 3600;
-        let minute = last_modified / 60;
-
-        println!(
-            "{:20} {} {:2} Day {:2} Hour {:2} Minute {:10}",
-            path.file_name().unwrap().to_str().unwrap(),
-            permission,
-            day,
-            hour,
-            minute,
-            metadata.len(),
-        );
+fn visit_dir(_dir_name: String) -> Result<ReadDir, String> {
+    let mut _current_dir = current_dir().expect("[can't get current location]");
+    if !_dir_name.is_empty() {
+        _current_dir.push(_dir_name);
     }
-    Ok(())
+    if !_current_dir.is_dir() {
+        _current_dir.clear();
+        _current_dir = current_dir().expect("[can't get current location]");
+    }
+    Ok(read_dir(_current_dir).expect("[can't read file]"))
+}
+
+
+pub fn visit(_dir_name: String) -> Result<(Vec<DirEntry>, Vec<DirEntry>, Vec<DirEntry>), String> {
+    let mut folders: Vec<DirEntry> = Vec::new();
+    let mut files: Vec<DirEntry> = Vec::new();
+    let mut error: Vec<DirEntry> = Vec::new();
+    for dir in visit_dir(_dir_name)? {
+        match dir {
+            Ok(dir_entry) => match dir_entry.metadata() {
+                Ok(dir_metadata) => {
+                    if dir_metadata.is_dir() {
+                        folders.push(dir_entry);
+                    } else {
+                        files.push(dir_entry);
+                    }
+                }
+                _ => error.push(dir_entry)
+            }
+            _ => error.push(dir.unwrap())
+        }
+    }
+    Ok((folders, files, error))
 }
