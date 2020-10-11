@@ -10,7 +10,7 @@ use ansi_term::Colour;
 async fn files(req: HttpRequest) -> NamedFile {
     let path: PathBuf = req.match_info().query("path").parse().unwrap();
     println!("{}  [{}]",
-             Colour::Red.bold().paint("Serving File\t\t::\t\t"),
+             Colour::Red.bold().paint(":: File\t\t\t\t"),
              Colour::Cyan.bold().paint(path.to_str().unwrap().to_string()));
     NamedFile::open(path).unwrap()
         .use_last_modified(true)
@@ -27,7 +27,7 @@ async fn index(req: HttpRequest) -> HttpResponse {
     let current_path: PathBuf = PathBuf::from("./");
     let path: PathBuf = req.match_info().query("path").parse().unwrap();
     println!("{}  [{}]",
-             Colour::Red.bold().paint("Listing Dir\t\t::\t\t"),
+             Colour::Red.bold().paint(":: Dir\t\t\t\t"),
              Colour::Yellow.bold().paint(path.to_str().unwrap().to_string()));
     let final_path = if path == empty_path { current_path } else { path };
     HttpResponse::Ok().body(generate(visit(final_path)))

@@ -31,14 +31,16 @@ pub fn visit(path: PathBuf) -> String {
     let result = list_dir(path);
     let mut table_body = "".to_string();
     for data in result {
-        table_body.push_str(&"<tr>".to_string());
+
         if data.is_file {
-            table_body.push_str(&format!("<th><a style='color:red' target='_blank' rel='noreferrer noopener' href='/file/{}'>{}</a></th>", data.path, data.filename));
+            table_body.push_str(&"<tr>".to_string());
+            table_body.push_str(&format!("<td class='name'><a target='_blank' rel='noreferrer noopener' href='/file/{}'>{}</a></td>", data.path, data.filename));
         } else {
-            table_body.push_str(&format!("<th><a href='/{}'>{}</a></th>", data.path, data.filename));
+            table_body.push_str(&"<tr >".to_string());
+            table_body.push_str(&format!("<td class='name folder'><a href='/{}'>{}</a></td>", data.path, data.filename));
         }
-        table_body.push_str(&format!("<th>{}</th>", data.path));
-        table_body.push_str(&format!("<th>{}</th>", data.filesize));
+        table_body.push_str(&format!("<td class='path'>{}</td>", data.path));
+        table_body.push_str(&format!("<td class='size'>{}</td>", data.filesize));
         table_body.push_str(&"</tr>".to_string());
     }
     table_body
