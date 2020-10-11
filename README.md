@@ -16,11 +16,9 @@ Simple Http Server written in Rust
 
 
 
-- [ ] Automatic render index page
+- [x] Automatic render index page
 - [ ] Upload file
 - [ ] Sort by: filename, filesize, modifled
 - [ ] Search All Nested Files
-- [ ] Content-Encoding: gzip/deflate
-- [ ] Added CORS headers support
-- [ ] Guess mime type
-- [ ] Pretty log
+- [x] Guess mime type
+- [x] Pretty log

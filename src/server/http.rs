@@ -43,7 +43,10 @@ pub async fn serve() -> std::io::Result<()> {
                 .service(index)
         )
     )
-        .bind("0.0.0.0:8989")?
+        .bind("0.0.0.0:8989").expect(
+        &format!("{}  [{}]",
+                 Colour::Red.bold().paint("PORT is Already in USE"),
+                 Colour::Cyan.bold().paint("8989")))
         .run()
         .await
 }
