@@ -8,9 +8,9 @@ Simple Http Server written in Rust
 
 ### Download binary
 
-- [windows](https://github.com/its-ash/http_server/releases/tag/windows)
-- [Mac](https://github.com/its-ash/http_server/releases/tag/os-x)
-- [Linux](https://github.com/its-ash/http_server/releases/tag/linux)
+- [windows](https://github.com/neofox-in/http_server/releases/download/windows/http_server.exe)
+- [Mac](https://github.com/neofox-in/http_server/releases/download/os-x/http_server_darwin)
+- [Linux](https://github.com/neofox-in/http_server/releases/download/linux/http_server_amd64)
 
 ## Features
 
